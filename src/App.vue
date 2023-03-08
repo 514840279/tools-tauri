@@ -1,23 +1,48 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import Greet from "./components/Greet.vue";
+import { ref } from "vue";
+
+import { darkTheme, lightTheme } from 'naive-ui';
+import { zhCN, dateZhCN } from 'naive-ui';
+import { NConfigProvider } from 'naive-ui';
+
+import Admin from "./views/Admin.vue";
+import Index from "./views/index.vue";
+import Login from "./views/Login.vue";
+import Error from "./views/Error.vue";
+
+import { ViewType } from "./interface/View";
+
+import { userStore } from "@/stores/user";
+
+// 实例化仓库
+const store = userStore();
+// 获取数据
+const userinfo = store.userinfo;
+
+let viewF = ref<ViewType>(ViewType.Login);
+if (userinfo == null) {
+  viewF.value = ViewType.Login;
+} else {
+  // 判断登录后信息展示 默认登录页面
+  if (userinfo.roles?.includes("admin")) {
+    viewF.value = ViewType.Admin;
+  } else if (userinfo.roles?.includes("user")) {
+    viewF.value = ViewType.User;
+  } else {
+    viewF.value = ViewType.Login;
+  }
+}
 </script>
 
 <template>
-  <div class="container">
-    <h1>Welcome to Tauri!</h1>
-
-    第二次构建
-  </div>
+  <!-- 调整 naive-ui 的字重配置 -->
+  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme="darkTheme">
+    <!-- <keep-alive> -->
+    <Admin v-if="viewF === ViewType.Admin" />
+    <Index v-if="viewF === ViewType.User" />
+    <Login v-if="viewF === ViewType.Login" />
+    <Error v-if="viewF === ViewType.Error" />
+  </n-config-provider>
 </template>
 
-<style scoped>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #249b73);
-}
-</style>
+<style scoped></style>
