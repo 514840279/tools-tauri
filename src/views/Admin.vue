@@ -19,25 +19,25 @@
     <el-container>
       <el-aside :width="asideWidth" class="left">
         <el-scrollbar :height="height">
-          <!-- aside -->
+
           <el-menu class="el-menu-vertical-demo" :collapse="isCollapse" :default-openeds="openedsIndex" :default-active="aside.activeIndex">
             <el-sub-menu v-for="(subme, index) in aside.submenu" :key="index" :index="subme.index">
               <template #title>
                 <el-icon>
-                  <component :is="subme.icon"></component>
+                  <!-- <component :is="subme.icon"></component> -->
                 </el-icon>
                 <span>{{ subme.text }}</span>
               </template>
-              <!-- group menu -->
+
               <el-menu-item-group v-for="(group, ind) in subme.group" :key="ind" :title="group.title">
                 <el-menu-item v-for="(data, i) in group.data" :key="i" :index="data.index">
                   <span>{{ data.text }}</span>
                 </el-menu-item>
               </el-menu-item-group>
-              <!-- submenu -->
+
               <el-menu-item v-for="(data, i) in subme.data" :key="i" :index="data.index">
                 <el-icon>
-                  <component :is="data.icon"></component>
+                  <!-- <component :is="data.icon "></component> -->
                 </el-icon>
                 <span @click="handleBreadcrumb(subme, data)">{{ data.text }}</span>
               </el-menu-item>
@@ -49,15 +49,15 @@
         <el-main>
           <el-card class="box-card">
             <template #header>
-              <!-- 面包屑 -->
+
               <el-breadcrumb v-if="currentList.length > 0" separator="/">
                 <el-breadcrumb-item v-for="(item, i) in currentList" :key="i" :index="i" :to="{ path: item.path }">
                   {{ item.text }}
                 </el-breadcrumb-item>
               </el-breadcrumb>
             </template>
-            <!-- 路由出口 -->
-            <!-- 路由匹配到的组件将渲染在这里 -->
+
+
             <router-view></router-view>
           </el-card>
         </el-main>
@@ -68,6 +68,7 @@
     </el-container>
   </el-container>
 </template>
+
 <script setup lang="ts">
 import Foot from "@components/home/Food.vue";
 import { onBeforeMount, onMounted, ref } from "vue";
@@ -326,4 +327,4 @@ body {
   text-align: center;
   padding: 8px 0px 5px 0px;
 }
-</style>
+</style> 

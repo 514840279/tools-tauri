@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "types": ["naive-ui/volar", "@dcloudio/types", "node"],
+    "types": ["naive-ui/volar", "node"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],

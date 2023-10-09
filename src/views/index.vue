@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="common-layout">
         <el-container>
             <el-header>
@@ -19,7 +19,7 @@
                                 </el-icon>
                                 <span>{{ subme.text }}</span>
                             </template>
-                            <!-- submenu -->
+                           
                             <el-menu-item v-for="(data, i) in subme.data" :key="i" :index="data.index">
                                 <el-icon>
                                     <component :is="data.icon"></component>
@@ -74,4 +74,7 @@ function handleBreadcrumb(data: Menu | MenuItem) { }
 .flex-grow {
     flex-grow: 1;
 }
-</style>
+</style> -->
+
+<template>
+</template>

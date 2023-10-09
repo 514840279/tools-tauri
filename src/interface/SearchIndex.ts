@@ -1,6 +1,6 @@
 import { PageParam, SelectOptions } from "@interface/Table";
-import { SysApplTypeTabsColumnInfoVo } from "./SysApp";
-import { SysDbmsTabsCols } from "./SysDbms";
+// import { SysApplTypeTabsColumnInfoVo } from "./SysApp";
+// import { SysDbmsTabsCols } from "./SysDbms";
 
 export interface SearchIndexParameters extends SelectOptions {
   indexPlaceholder?: string;
@@ -8,6 +8,6 @@ export interface SearchIndexParameters extends SelectOptions {
 }
 
 
-export interface TabsPageParams<T> extends PageParam<T> {
-  cols?: Array<SysDbmsTabsCols | SysApplTypeTabsColumnInfoVo>;
-}
+// export interface TabsPageParams<T> extends PageParam<T> {
+//   cols?: Array<SysDbmsTabsCols | SysApplTypeTabsColumnInfoVo>;
+// }

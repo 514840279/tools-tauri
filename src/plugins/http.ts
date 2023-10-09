@@ -24,6 +24,7 @@ class ServiceRequest {
         return Promise.reject(error)
       }
     )
+    const message = useMessage()
     this.instance.interceptors.response.use(//实例中的响应拦截器
       (response: any) => {
         //响应成功的拦截
@@ -32,10 +33,7 @@ class ServiceRequest {
           switch (response.data.code) {
             // 确定的错误
             case ResponseErrorType.ERROR_1:
-              ElMessage({
-                message: response.data.msg,
-                type: 'warning',
-              })
+              message.warning(response.data.msg)
               return;
             // 确定的错误 TODO
             // 默认是成功的
@@ -44,18 +42,11 @@ class ServiceRequest {
               return response;
           }
         } else {
-          debugger
-          ElMessage({
-            message: "未知",
-            type: 'error',
-          })
+          message.warning("未知错误")
         }
       },
       (error) => {
-        ElMessage({
-          message: error,
-          type: 'error',
-        })
+        message.error(error)
         //响应失败的拦截
         return Promise.reject(error)
       }

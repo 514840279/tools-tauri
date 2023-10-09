@@ -6,6 +6,7 @@ export interface MenuItem {
     icon?: String,
     data?: Array<MenuItem>,
     width?: string,
+    group?: Array<MenuItem>,
 }
 
 export interface Menu {
@@ -24,7 +25,6 @@ export interface Aside {
     activeIndex?: String | Array<String>,
     submenu?: Array<Menu | MenuItem>,
     openedsIndex?: Array<String>,
-
 }
 
 export interface Breadcrumb {
